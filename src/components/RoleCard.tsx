@@ -17,10 +17,8 @@ import {
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -48,7 +46,7 @@ function Page() {
         defaultValues: {
             role: "",
         },
-    })
+    });
 
     async function onSubmit(value: z.infer<typeof roleOverviewSchema>) {
         console.log(value);
@@ -80,7 +78,7 @@ function Page() {
         setUserSelectedRole(role);
         const roleObject = {
             role
-        }
+        };
         try {
             const response = await axios.post('http://localhost:3000/api/role-overview', roleObject);
             const data = response.data.generatedOverview;
