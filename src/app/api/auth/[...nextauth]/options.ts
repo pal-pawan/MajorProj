@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token._id = user._id?.toString(); // Convert ObjectId to string
+        token._id = user._id?.toString(); // Convert ObjectId to string since it is stored in mongodb
         token.username = user.username;
       }
       return token;

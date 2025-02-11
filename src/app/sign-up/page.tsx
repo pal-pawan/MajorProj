@@ -94,7 +94,6 @@ export default function SignUpForm() {
                       setUsername(e.target.value);
                     }}
                   />
-
                   <FormMessage />
                 </FormItem>
               )}
