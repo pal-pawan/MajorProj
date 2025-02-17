@@ -31,6 +31,8 @@ import { Button } from '@/components/ui/button';
 // import { Loader2 } from 'lucide-react';
 
 import { useRouter } from 'next/navigation';
+import { User } from 'next-auth';
+import { useSession } from 'next-auth/react';
 import { roleOverviewSchema } from '@/schema/roleOverviewSchema';
 
 
@@ -40,6 +42,12 @@ function Page() {
     const [userSelectedRole, setUserSelectedRole] = useState('');
     const [overview, setOverview] = useState('');
     const router = useRouter();
+    const { data: session } = useSession();
+
+    if (!session || !session.user) {
+        return <div></div>;
+    }
+    const { username } = session.user as User;
 
     const form = useForm<z.infer<typeof roleOverviewSchema>>({
         resolver: zodResolver(roleOverviewSchema),
@@ -88,6 +96,16 @@ function Page() {
         } catch (error) {
             console.log("error fetching role overview", error);
         }
+    }
+
+    const handleContinueButtonClick = async () => {
+
+        const preparingForRole = {
+            userSelectedRole
+        }
+
+        const response = await axios.post('http://localhost:3000/api/add-role',preparingForRole )
+        router.push(`${username}/${userSelectedRole}`);
     }
 
     useEffect(() => {
@@ -140,8 +158,8 @@ function Page() {
             <div className="mt-4 mx-5 flex flex-wrap sm:mx-1">
                 {roles.length > 0 ? (
                     roles.map((role, index) => (
-                        <Dialog>
-                            <Card key={index} className='text-wrap mx-5 my-3 w-80 cursor-pointer sm:w-52'>
+                        <Dialog key={index}>
+                            <Card className='text-wrap mx-5 my-3 w-80 cursor-pointer sm:w-52'>
                                 <CardHeader>
                                     <CardTitle>Role</CardTitle>
                                 </CardHeader>
@@ -156,10 +174,11 @@ function Page() {
                                 </CardContent>
                             </Card>
                             {overview.length > 0 ? (
-                                <DialogContent className='min-h-[60vh] overflow-y-scroll text-center'>
+                                <DialogContent className='min-h-[60vh] text-center'>
                                     <DialogHeader><DialogTitle> {userSelectedRole} Role Overview </DialogTitle></DialogHeader>
 
-                                    <p className='h-[60vh]'> {overview} </p>
+                                    <p className='h-[60vh] overflow-y-scroll'> {overview} </p>
+                                    <Button className=' bottom-4' onClick={() => handleContinueButtonClick()}>Continue</Button>
                                 </DialogContent>
                             ) : (
                                 <DialogContent className='min-h-[60vh] overflow-y-scroll'>

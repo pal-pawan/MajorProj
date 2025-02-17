@@ -1,10 +1,19 @@
 import mongoose,{Schema, Document} from "mongoose";
 
+export interface PrepRoles extends Document {
+    roles: string
+}
+
+const PrepRoleSchema:Schema<PrepRoles> = new mongoose.Schema({
+    roles:String
+})
+
 export interface User extends Document {
     username: string,
     email: string,
     password: string,
     isAdmin: boolean,
+    preparingFor: PrepRoles[]
 }
 
 const UserSchema:Schema<User> = new mongoose.Schema({
@@ -29,16 +38,11 @@ const UserSchema:Schema<User> = new mongoose.Schema({
     isAdmin:{
         type: Boolean,
     },
+    preparingFor:[PrepRoleSchema]
 },{
     timestamps: true
 })
 
-// userId
-// name
-// email
-// password
-// is admin
-// preparing for
 
 const UserModel =
   (mongoose.models.User as mongoose.Model<User>) ||
