@@ -5,7 +5,10 @@ export interface PrepRoles extends Document {
 }
 
 const PrepRoleSchema:Schema<PrepRoles> = new mongoose.Schema({
-    roles:String
+    roles:{
+        type: String,
+        unique: true
+    }
 })
 
 export interface User extends Document {

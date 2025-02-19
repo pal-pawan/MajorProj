@@ -1,6 +1,6 @@
 'use client';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
     Card,
     CardHeader,
@@ -12,7 +12,7 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
+    DialogTrigger
 } from "@/components/ui/dialog";
 import {
     Form,
@@ -34,12 +34,14 @@ import { useRouter } from 'next/navigation';
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import { roleOverviewSchema } from '@/schema/roleOverviewSchema';
+import { useUserRole } from "@/context/UserRoleContext";
 
 
 function Page() {
     const [roles, setRoles] = useState([]);
     const loadingRoles = ['Loading Role...', 'Loading Role...', 'Loading Role...', 'Loading Role...', 'Loading Role...'];
-    const [userSelectedRole, setUserSelectedRole] = useState('');
+    const { userSelectedRole, setUserSelectedRole } = useUserRole();
+
     const [overview, setOverview] = useState('');
     const router = useRouter();
     const { data: session } = useSession();
