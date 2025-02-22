@@ -138,11 +138,12 @@ function Page() {
                         </DialogTrigger>
 
                         {overview.length > 0 ? (
-                            <DialogContent className='min-h-[60vh] overflow-y-scroll text-center'>
-                                <DialogHeader><DialogTitle> {userSelectedRole} Role Overview </DialogTitle></DialogHeader>
+                            <DialogContent className='min-h-[60vh] text-center'>
+                            <DialogHeader><DialogTitle> {userSelectedRole} Role Overview </DialogTitle></DialogHeader>
 
-                                <p className='h-[60vh]'> {overview} </p>
-                            </DialogContent>
+                            <p className='h-[60vh] overflow-y-scroll'> {overview} </p>
+                            <Button className=' bottom-4' onClick={() => handleContinueButtonClick()}>Continue</Button>
+                        </DialogContent>
                         ) : (
                             <DialogContent className='min-h-[60vh] overflow-y-scroll'>
                                 <DialogHeader><DialogTitle> {userSelectedRole} Role Overview </DialogTitle></DialogHeader>

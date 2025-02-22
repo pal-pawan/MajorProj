@@ -14,8 +14,10 @@ export async function POST(request: Request, response: Response) {
         const session = await getServerSession(authOptions);
         const _user: User = session?.user;
         if (!session || !session.user) {
-            return Response.json(
-                { success: false, message: 'Not authenticated' },
+            return Response.json({
+                success: false,
+                message: 'Not authenticated'
+            },
                 { status: 401 }
             );
         }
@@ -23,13 +25,13 @@ export async function POST(request: Request, response: Response) {
         const userId = new mongoose.Types.ObjectId(_user._id);
 
         const user = await UserModel.findById(userId);
-        if(!user){
+        if (!user) {
             return Response.json({
                 success: false,
-                message:'user not found'
+                message: 'user not found'
             },
-            {status: 404}
-    )
+                { status: 404 }
+            );
         }
         const newPreparingRole = { roles: preparingForRole };
         user.preparingFor.push(newPreparingRole as PrepRoles);
@@ -40,17 +42,18 @@ export async function POST(request: Request, response: Response) {
             success: true,
             message: 'new role added successfully',
             newPreparingRole
-        }
+        },
+            { status: 200 }
         )
 
     } catch (error) {
         console.log(error)
         return Response.json({
             success: false,
-            message:'Failed to add Role',
+            message: 'Failed to add Role',
             error
         },
-        {status: 500}
-    )
+            { status: 500 }
+        )
     }
 }

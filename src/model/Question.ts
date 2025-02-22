@@ -1,4 +1,4 @@
-import mongoose, {Schema, Document, Mongoose, mongo} from 'mongoose';
+import mongoose, { Document} from 'mongoose';
 
 export interface Question extends Document{
     questionId: string,
