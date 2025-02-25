@@ -59,22 +59,24 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-contain bg-center" style={{
+      backgroundImage: `url('/bg-sphere.gif')`,
+    }}>
+      <div className="w-full max-w-md p-8 space-y-8 rounded-lg bg-[#292d32b5] shadow-[20px_20px_60px_#23262ba5,-20px_-20px_60px_#2f343aa5] l text-white">
         <div className="text-center">
           <h1 className="text-2xl font-extrabold tracking-tight lg:text-3xl mb-6">
-            Continue your Interview Preparation Journey
+          <span className='text-orange-400'>Resume</span> Your Interview Prep!
           </h1>
           <p className="mb-4">Sign in to continue</p>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-black">
             <FormField
               name="identifier"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email/Username</FormLabel>
+                  <FormLabel className='text-white font-semibold'>Email/Username</FormLabel>
                   <Input {...field} />
                   <FormMessage />
                 </FormItem>
@@ -85,19 +87,19 @@ export default function SignInForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className='text-white font-semibold'>Password</FormLabel>
                   <Input type="password" {...field} />
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className='w-full' type="submit">Sign In</Button>
+            <Button className='w-full font-bold bg-[#E58C00] hover:bg-[#E85002]' type="submit">Sign In</Button>
           </form>
         </Form>
         <div className="text-center mt-4">
           <p>
             Not a member yet?{' '}
-            <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
+            <Link href="/sign-up" className="text-yellow-600 hover:text-yellow-800">
               Sign up
             </Link>
           </p>

@@ -1,12 +1,15 @@
-import RoleCard from '@/components/RoleCard'
-import React from 'react'
+
+import React from 'react';
+import PreparationWindow from '@/components/PreparationWindow';
+import 'regenerator-runtime/runtime';
+
 
 const page = () => {
   return (
     <>
       <main>
-        <div>page</div>
-        <RoleCard/>
+        <div>Landing Page</div>
+        <PreparationWindow/>
       </main>
     </>
   )

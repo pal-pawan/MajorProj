@@ -71,22 +71,24 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-contain bg-center"  style={{
+      backgroundImage: `url('/bg-sphere.gif')`,
+    }}>
+      <div className="w-full max-w-md p-8 space-y-8 bg-[#292d32b5] shadow-[20px_20px_60px_#23262ba5,-20px_-20px_60px_#2f343aa5] rounded-lg text-white">
         <div className="text-center">
           <h1 className="text-2xl font-extrabold tracking-tight lg:text-3xl mb-6">
-          Start your Interview Preparation Journey
+          <span className='text-orange-400'>Ace</span> Every Interview
           </h1>
-          <p className="mb-4">Sign up to get started</p>
+          <p className="mb-4">Start Your Journey Today</p>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-black">
             <FormField
               name="username"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel className='text-white font-semibold'>Username</FormLabel>
                   <Input
                     {...field}
                     onChange={(e) => {
@@ -103,7 +105,7 @@ export default function SignUpForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className='text-white font-semibold'>Email</FormLabel>
                   <Input {...field} name="email" />
                   <FormMessage />
                 </FormItem>
@@ -115,13 +117,13 @@ export default function SignUpForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className='text-white font-semibold'>Password</FormLabel>
                   <Input type="password" {...field} name="password" />
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className='w-full' disabled={isSubmitting}>
+            <Button type="submit" className='w-full font-bold bg-[#E58C00] hover:bg-[#E85002]' disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -136,7 +138,7 @@ export default function SignUpForm() {
         <div className="text-center mt-4">
           <p>
             Already a member?{' '}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
+            <Link href="/sign-in" className="text-yellow-600 hover:text-yellow-800">
               Sign in
             </Link>
           </p>
