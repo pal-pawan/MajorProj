@@ -14,7 +14,7 @@ function page() {
   const { username } = session.user as User;
   router.replace(`/home/${username}`)
   return (
-    <div>Home Page</div>
+    <div className='w-full h-screen flex justify-center bg-gradient-to-br from-[#2a1617] to-[#252d3f]'></div>
   )
 }
 

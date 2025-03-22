@@ -65,7 +65,7 @@ export default function SignInForm() {
       <div className="w-full max-w-md p-8 space-y-8 rounded-lg bg-[#292d32b5] shadow-[20px_20px_60px_#23262ba5,-20px_-20px_60px_#2f343aa5] l text-white">
         <div className="text-center">
           <h1 className="text-2xl font-extrabold tracking-tight lg:text-3xl mb-6">
-          <span className='text-orange-400'>Resume</span> Your Interview Prep!
+          <span className='bg-gradient-to-r from-[#FFD700] to-[#d8ac45] bg-clip-text text-transparent'>Resume</span> Your Interview Prep!
           </h1>
           <p className="mb-4">Sign in to continue</p>
         </div>
@@ -93,7 +93,7 @@ export default function SignInForm() {
                 </FormItem>
               )}
             />
-            <Button className='w-full font-bold bg-[#E58C00] hover:bg-[#E85002]' type="submit">Sign In</Button>
+            <Button className='w-full bg-[#aa9052] hover:bg-[#e6c270] shadow-[20px_20px_60px_#1a1a1a,-20px_-20px_60px_#232323] text-[#1e1e1e] font-semibold backdrop-blur-md' type="submit">Sign In</Button>
           </form>
         </Form>
         <div className="text-center mt-4">

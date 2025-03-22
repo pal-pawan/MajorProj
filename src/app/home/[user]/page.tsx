@@ -1,9 +1,9 @@
 'use client'
 
-import React from 'react'
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react'
 import RoleCard from '@/components/RoleCard'
+import WelcomeWindow from '@/components/WelcomeWindow';
 
 
 function page() {
@@ -17,9 +17,11 @@ function page() {
 
   return (
     <>
-      <div className='text-center text-3xl my-3 font-bold'>Welcome back {username}</div>
-      <div className='w-full border-y-gray-800 my-5'>
-        <RoleCard/>
+      <div className='w-[100vw] h-screen flex justify-center bg-gradient-to-br from-[#2a1617] to-[#252d3f]'>
+        <div className='w-full flex flex-col items-center'>
+          <WelcomeWindow/>
+          <RoleCard />
+        </div>
       </div>
 
     </>

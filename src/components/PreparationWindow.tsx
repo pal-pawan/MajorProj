@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function PreparationWindow() {
@@ -15,7 +15,7 @@ function PreparationWindow() {
     return <span>Your browser does not support speech recognition.</span>;
   }
 
-  const startListening = () => SpeechRecognition.startListening({ continuous: false });
+  const startListening = () => SpeechRecognition.startListening({ continuous: true });
   const stopListening = () => SpeechRecognition.stopListening();
 
   return (
