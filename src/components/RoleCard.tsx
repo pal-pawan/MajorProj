@@ -1,6 +1,7 @@
 'use client';
 import axios from 'axios';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
+// import { useContext } from 'react';
 import {
     Card,
     CardHeader,
@@ -59,7 +60,7 @@ function Page() {
     });
 
     async function onSubmit(value: z.infer<typeof roleOverviewSchema>) {
-        console.log(value);
+        // console.log(value);
         setUserSelectedRole(value.role);
 
         try {
@@ -98,7 +99,7 @@ function Page() {
         } catch (error) {
             console.log("error fetching role overview", error);
         }
-    }
+    };
 
     const handleContinueButtonClick = async () => {
         const preparingForRole = {
@@ -107,11 +108,12 @@ function Page() {
 
         const response = await axios.post('http://localhost:3000/api/add-role', preparingForRole)
         router.push(`${username}/${userSelectedRole}`);
-    }
+        console.log(response);
+    };
 
     useEffect(() => {
         getRoleList();
-    }, []);
+    });
 
     return (
         <div>

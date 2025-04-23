@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
             ],
           });
           if (!user) {
-            throw new Error('No user found with this email');
+            throw new Error('No user found with this email or username');
           };
           const isPasswordCorrect = await bcrypt.compare(
             credentials.password,

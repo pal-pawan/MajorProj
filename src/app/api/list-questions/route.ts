@@ -1,7 +1,10 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-require('dotenv').config();
+import { NextResponse } from "next/server";
+// require('dotenv').config();
+import dotenv from 'dotenv'
+dotenv.config();
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
     try {
         const response = await req.json();
         const userRole = response.userSelectedRole;
@@ -12,9 +15,9 @@ export async function POST(req: Request, res: Response) {
 
         const result = await model.generateContent(prompt);
         const generatedQuestionList = result.response.text();
-        return Response.json({ generatedQuestionList });
+        return NextResponse.json({ generatedQuestionList });
     } catch (error) {
         console.log(error);
-        return Response.json({ "message": "Failed to generate Questions", error });
+        return NextResponse.json({ "message": "Failed to generate Questions", error });
     }
 }

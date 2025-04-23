@@ -1,7 +1,10 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-require('dotenv').config();
+import { NextResponse } from "next/server";
+// require('dotenv').config();
+import dotenv from 'dotenv'
+dotenv.config();
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
     try {
         const response = await req.json();
         const transcript = response.transcript;
@@ -15,9 +18,9 @@ export async function POST(req: Request, res: Response) {
 
         const result = await model.generateContent(prompt);
         const generatedEvaluation = result.response.text();
-        return Response.json({ generatedEvaluation });
+        return NextResponse.json({ generatedEvaluation });
     } catch (error) {
         console.log(error);
-        return Response.json({ "message": "unable to evaluate, please try again", error });
+        return NextResponse.json({ "message": "unable to evaluate, please try again", error });
     }
 }

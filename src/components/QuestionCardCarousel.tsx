@@ -39,6 +39,7 @@ function QuestionCardCarousel() {
     const role = {
         userSelectedRole
     };
+    console.log(activeSlide);
 
     const {
         transcript,
@@ -46,6 +47,7 @@ function QuestionCardCarousel() {
         resetTranscript,
         browserSupportsSpeechRecognition
     } = useSpeechRecognition();
+    console.log(listening);
 
     if (!browserSupportsSpeechRecognition) {
         return <span>Your browser does not support speech recognition.</span>;
@@ -80,6 +82,7 @@ function QuestionCardCarousel() {
                 question:currentQuestion,
                 transcript: transcript
             }
+            console.log(question)
             const response = await axios.post("http://localhost:3000/api/evaluate-answer", evaluationObject);
             let rawData = response.data.generatedEvaluation;
             rawData = rawData.replace(/```json|```/g, '');
@@ -99,7 +102,7 @@ function QuestionCardCarousel() {
 
     useEffect(() => {
         generateQuestions();
-    }, [])
+    });
 
     return (
         <div className='w-[100vw] h-[80vh] flex justify-center item-middle'>
@@ -167,14 +170,13 @@ function QuestionCardCarousel() {
                             {evaluation}
                         </div>
                         <div>
-                            <Toggle asChild aria-label='mic' variant="outline" pressed={isRecording}
+                            <Toggle asChild={true} aria-label='mic' variant="outline" pressed={isRecording}
                                 className='bg-white rounded-full'
-                                onPressedChange={() => {
-                                    isRecording ? startListening() : stopListening()
+                                onPressedChange={() => { isRecording ? startListening() : stopListening()
                                     setIsRecording(!isRecording)
                                 }
                                 }>
-                                {isRecording ? <Mic /> : <MicOff />}
+                                {isRecording ? <MicOff /> : <Mic />}
                             </Toggle>
                             <Button onClick={() => { resetTranscript() }}>Reset</Button>
                             <Button onClick={() => { evaluateResponse(currentQuestion) }}>Submit</Button>

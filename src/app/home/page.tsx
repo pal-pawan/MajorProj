@@ -1,10 +1,10 @@
-'use client'
-import React from 'react'
+'use client';
+import React from 'react';
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
 
-function page() {
+function Page() {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -15,7 +15,7 @@ function page() {
   router.replace(`/home/${username}`)
   return (
     <div className='w-full h-screen flex justify-center bg-gradient-to-br from-[#2a1617] to-[#252d3f]'></div>
-  )
+  );
 }
 
-export default page
+export default Page;

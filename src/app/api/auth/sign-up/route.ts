@@ -1,6 +1,7 @@
 import dbConnect from '@/lib/dbConnect';
 import UserModel from '@/model/User';
 import bcrypt from 'bcryptjs';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
     await dbConnect();
@@ -13,7 +14,7 @@ export async function POST(request: Request) {
         });
 
         if (existingVerifiedUserByUsername) {
-            return Response.json(
+            return NextResponse.json(
                 {
                     success: false,
                     message: 'Username is already taken',
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
         const existingUserByEmail = await UserModel.findOne({ email });
 
         if (existingUserByEmail) {
-            return Response.json(
+            return NextResponse.json(
                 {
                     success: false,
                     message: 'User already exists with this email',
@@ -45,7 +46,7 @@ export async function POST(request: Request) {
             await newUser.save();
         }
 
-        return Response.json(
+        return NextResponse.json(
             {
                 success: true,
                 message: 'User registered successfully.',
@@ -54,7 +55,7 @@ export async function POST(request: Request) {
         );
     } catch (error) {
         console.error('Error registering user:', error);
-        return Response.json(
+        return NextResponse.json(
             {
                 success: false,
                 message: 'Error registering user',

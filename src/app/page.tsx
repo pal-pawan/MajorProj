@@ -1,6 +1,6 @@
 
 import React from 'react';
-import PreparationWindow from '@/components/PreparationWindow';
+// import PreparationWindow from '@/components/PreparationWindow';
 import "regenerator-runtime/runtime";
 import WelcomeWindow from '@/components/WelcomeWindow';
 

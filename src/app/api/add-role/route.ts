@@ -4,8 +4,9 @@ import mongoose from 'mongoose';
 import { User } from 'next-auth';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]/options';
+import { NextResponse } from 'next/server';
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
     try {
         await dbConnect();
         const requestData = await request.json();
@@ -26,7 +27,7 @@ export async function POST(request: Request, response: Response) {
 
         const user = await UserModel.findById(userId);
         if (!user) {
-            return Response.json({
+            return NextResponse.json({
                 success: false,
                 message: 'user not found'
             },
@@ -38,7 +39,7 @@ export async function POST(request: Request, response: Response) {
 
         await user.save();
 
-        return Response.json({
+        return NextResponse.json({
             success: true,
             message: 'new role added successfully',
             newPreparingRole
@@ -48,7 +49,7 @@ export async function POST(request: Request, response: Response) {
 
     } catch (error) {
         console.log(error)
-        return Response.json({
+        return NextResponse.json({
             success: false,
             message: 'Failed to add Role',
             error

@@ -1,19 +1,17 @@
-'use client'
-
-import { User } from 'next-auth';
-import { useSession } from 'next-auth/react'
-import RoleCard from '@/components/RoleCard'
+'use client';
+// import { User } from 'next-auth';
+import { useSession } from 'next-auth/react';
+import RoleCard from '@/components/RoleCard';
 import WelcomeWindow from '@/components/WelcomeWindow';
 
-
-function page() {
+function Page() {
 
   const { data: session } = useSession();
 
   if (!session || !session.user) {
     return <div></div>;
   }
-  const { username } = session.user as User;
+  // const { username } = session.user as User;
 
   return (
     <>
@@ -25,7 +23,7 @@ function page() {
       </div>
 
     </>
-  )
+  );
 }
 
-export default page
+export default Page;

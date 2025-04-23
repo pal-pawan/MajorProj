@@ -6,11 +6,9 @@ import axios from 'axios';
 import OverviewCardComponent from '@/components/OverviewCardComponent';
 
 
-function rolePage() {
-
-  const [overview, setOverview] = useState('');
-  
-
+function RolePage() {
+  const [overview, setOverview] = useState('');  
+  console.log(overview);
   const { userSelectedRole } = useUserRole();
   const role = {
     userSelectedRole
@@ -31,7 +29,7 @@ function rolePage() {
 
   useEffect(() => {
     generateOverview()
-  }, [])
+  })
   
 
 
@@ -42,7 +40,7 @@ function rolePage() {
         <QuestionCardCarousel/>
       </div>
     </>
-  )
+  );
 }
 
-export default rolePage
+export default RolePage;

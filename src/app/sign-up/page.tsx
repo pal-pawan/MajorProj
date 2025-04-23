@@ -25,10 +25,12 @@ import { signUpSchema } from '@/schema/signUpSchema';
 
 export default function SignUpForm() {
   const [username, setUsername] = useState('');
+  console.log(username)
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { toast } = useToast();
   const router = useRouter();
+  console.log(router)
 
 
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -57,8 +59,7 @@ export default function SignUpForm() {
 
       const axiosError = error as AxiosError<ApiResponse>;
 
-      let errorMessage = axiosError.response?.data.message;
-      ('There was a problem with your sign-up. Please try again.');
+      const errorMessage = axiosError.response?.data.message || ('There was a problem with your sign-up. Please try again.');
 
       toast({
         title: 'Sign Up Failed',

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
 import { useUserRole } from "@/context/UserRoleContext";
 import axios from 'axios';
@@ -8,9 +8,9 @@ import {
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-} from "@/components/ui/accordion"
+} from "@/components/ui/accordion";
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 
 
 import {
@@ -18,14 +18,14 @@ import {
     CardContent,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 interface Overview {
     general_responsibilities: string;
     interview_rounds: [string];
     top_skills_and_technologies: [string];
     expected_salary: string;
-}
+};
 
 function OverviewCardComponent() {
     const [overview, setOverview] = useState<Overview>();
@@ -49,11 +49,11 @@ function OverviewCardComponent() {
             return Response.json({ "message": "Failed to generate overview", error });
 
         }
-    }
+    };
 
     useEffect(() => {
         generateOverview()
-    }, [])
+    });
     return (
         <div className='w-4/5 h-[100%] my-5 px-3 py-2 align-middle text-wrap bg-[#ffffff22]  backdrop-blur-md flex flex-col text-left text-lg rounded-lg '>
             {overview ? (
