@@ -35,7 +35,6 @@ const UserSchema:Schema<User> = new mongoose.Schema({
     password:{
         type: String,
         required: true,
-        unique: true,
         trim: true
     },
     isAdmin:{
