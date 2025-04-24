@@ -45,7 +45,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token._id = user._id?.toString(); // Convert ObjectId to string since it is stored in mongodb
         token.username = user.username;
-        token.preparingFor = user.preparingFor || [];
+        // token.preparingFor = user.preparingFor || [];
       }
       return token;
     },
@@ -53,7 +53,7 @@ export const authOptions: NextAuthOptions = {
       if (token) {
         session.user._id = token._id;
         session.user.username = token.username;
-        session.user.preparingFor = token.preparingFor || [];
+        // session.user.preparingFor = token.preparingFor || [];
       }
       return session;
     },
